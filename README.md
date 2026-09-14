@@ -91,6 +91,28 @@ CRUD_Project/
 > forma aislada**. Documenta el cliente; para un build funcional necesitas el
 > entorno completo descrito arriba.
 
+## Capturas
+
+Renderizadas desde la propia aplicación JavaFX. Las tablas aparecen vacías
+porque el backend REST no está en ejecución (ver nota de arquitectura), pero
+las vistas, formularios y navegación son las reales de la app.
+
+| Inicio de sesión | Registro |
+|:---:|:---:|
+| ![Sign In](docs/img/signin.png) | ![Sign Up](docs/img/signup.png) |
+
+**Gestión de clientes (Customers CRUD)**
+
+![Customers](docs/img/customer.png)
+
+**Gestión de cuentas (Accounts)**
+
+![Accounts](docs/img/account.png)
+
+**Movimientos (Movements)**
+
+![Movements](docs/img/movement.png)
+
 ## Créditos
 
 Proyecto de equipo desarrollado por:
