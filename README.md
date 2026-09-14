@@ -93,9 +93,9 @@ CRUD_Project/
 
 ## Capturas
 
-Renderizadas desde la propia aplicación JavaFX. Las tablas aparecen vacías
-porque el backend REST no está en ejecución (ver nota de arquitectura), pero
-las vistas, formularios y navegación son las reales de la app.
+Capturas reales de la aplicación JavaFX funcionando **de extremo a extremo**
+contra el backend REST (`CRUDBankServerSide` sobre Payara + MySQL), con datos
+reales de clientes, cuentas y movimientos.
 
 | Inicio de sesión | Registro |
 |:---:|:---:|
