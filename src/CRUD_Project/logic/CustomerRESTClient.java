@@ -28,11 +28,11 @@ public class CustomerRESTClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/CRUDBankServerSide/webresources";
+    // URL base del backend REST: se lee de config.properties (ver CRUD_Project.logic.Config)
 
     public CustomerRESTClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("customer");
+        webTarget = client.target(Config.getBaseUri()).path("customer");
     }
 
     public void edit_XML(Object requestEntity) throws ClientErrorException {

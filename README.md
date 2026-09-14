@@ -45,10 +45,13 @@ El cliente ataca por defecto a la URL base:
 
 ```
 CRUD_Project/
+├── pom.xml                            # Build Maven (mvn javafx:run / mvn package)
 ├── src/
+│   ├── config.properties             # URL base del backend REST (configurable)
 │   ├── CRUD_Project.java              # Punto de entrada (JavaFX Application)
 │   └── CRUD_Project/
 │       ├── logic/                     # Clientes REST (Jersey/JAX-RS)
+│       │   ├── Config.java            # Lee la URL del backend (sys prop / config.properties)
 │       │   ├── AccountRESTClient.java
 │       │   ├── CustomerRESTClient.java
 │       │   └── MovementRESTClient.java
@@ -57,39 +60,47 @@ CRUD_Project/
 │           ├── *.fxml
 │           ├── *Controller.java
 │           └── report/                # Plantillas JasperReports (.jrxml/.jasper)
-└── test/                             # Tests JUnit de los controladores
+└── test/                             # Tests de interfaz (JUnit 4 + TestFX)
 ```
 
 ## Tecnologías
 
-- **Java** + **JavaFX** (interfaz con FXML)
+- **Java 17+** + **JavaFX 21** (interfaz con FXML)
 - **Jersey / JAX-RS** (`javax.ws.rs`) para el cliente REST
 - **JasperReports** para informes
-- **JUnit** para los tests
-- Pensado para desarrollarse con **NetBeans**
+- **JUnit 4 + TestFX** para los tests de interfaz
+- **Maven** como sistema de construcción
 
 ## Requisitos
 
-- JDK compatible con la versión de JavaFX utilizada
-- JavaFX SDK
-- Librerías de Jersey (cliente JAX-RS) y JasperReports
-- El backend `CRUDBankServerSide` (Payara + MySQL) para la funcionalidad completa
+- **JDK 17 o superior** (probado con Temurin 21)
+- **Maven 3.8+**
+- El backend `CRUDBankServerSide` (Payara + MySQL) en ejecución para la
+  funcionalidad completa (las dependencias JavaFX/Jersey/JasperReports las
+  resuelve Maven automáticamente).
 
 ## Cómo ejecutar
 
-1. Despliega primero el backend `CRUDBankServerSide` en Payara y configura su
-   base de datos MySQL (crea las tablas necesarias).
-2. Abre el proyecto en NetBeans (o compila con el JavaFX SDK y las librerías
-   indicadas en el *classpath*).
-3. Ejecuta la clase principal `CRUD_Project` (carga `SignIn.fxml`).
+1. Despliega y arranca el backend `CRUDBankServerSide` en Payara con su base de
+   datos MySQL.
+2. Configura la URL del backend si tu contexto/host difiere del de referencia,
+   editando `src/config.properties` o pasando `-Dbase.uri=...`:
+   ```
+   base.uri=http://localhost:8080/crudserversideexample/webresources
+   ```
+3. Ejecuta la aplicación con Maven:
+   ```bash
+   mvn clean javafx:run
+   ```
+   (o genera el jar con `mvn clean package`).
 4. Accede como administrador con las credenciales por defecto:
    - **Usuario:** `admin`
    - **Contraseña:** `admin`
 
-> **Nota:** al depender del backend y de librerías externas (JavaFX, Jersey,
-> JasperReports) que no se incluyen aquí, este repositorio **no se compila de
-> forma aislada**. Documenta el cliente; para un build funcional necesitas el
-> entorno completo descrito arriba.
+> **Nota sobre el login:** el acceso `admin/admin` está implementado en el
+> cliente como atajo temporal para pruebas (ver `SignInController`). El resto de
+> usuarios se autentican contra el backend. En un entorno real convendría mover
+> también esa validación al servidor.
 
 ## Capturas
 

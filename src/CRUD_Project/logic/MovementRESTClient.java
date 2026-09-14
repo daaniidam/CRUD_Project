@@ -27,11 +27,11 @@ public class MovementRESTClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/CRUDBankServerSide/webresources";
+    // URL base del backend REST: se lee de config.properties (ver CRUD_Project.logic.Config)
 
     public MovementRESTClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("movement");
+        webTarget = client.target(Config.getBaseUri()).path("movement");
     }
 
     public <T> T findMovementByAccount_XML(Class<T> responseType, String id) throws ClientErrorException {
