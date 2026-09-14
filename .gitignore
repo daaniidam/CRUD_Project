@@ -1,0 +1,28 @@
+# Compilados Java
+*.class
+
+# Salidas de build
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+/nbproject/private/
+target/
+
+# NetBeans
+.nb-gradle/
+nbactions.xml
+nb-configuration.xml
+
+# IntelliJ / Eclipse
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Logs y temporales
+*.log
+
+# macOS
+.DS_Store
